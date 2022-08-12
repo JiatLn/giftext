@@ -1,8 +1,8 @@
 {
-  "name": "vvtt",
+  "name": "giftext",
   "type": "module",
-  "version": "1.0.0",
-  "description": "VVTT is means Vite-Vue-Ts-Template :)",
+  "version": "0.0.1",
+  "description": "Give me a gif, send you a text gif as gift!",
   "author": {
     "name": "JiatLn",
     "email": "lne128gene980@163.com"

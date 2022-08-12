@@ -3,9 +3,10 @@
 </script>
 
 <template>
-  <footer text="center gray-300 12px" py-2>
-    MIT Licensed | Copyright &copy; 2022-PRESENT JiatLn VVTT
+  <footer text="center gray-500 12px" py-2>
+    MIT Licensed | Copyright &copy; 2022 JiatLn Giftext
   </footer>
 </template>
 
-<style scoped lang="scss"></style>
+<style scoped lang="less">
+</style>
