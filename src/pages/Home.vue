@@ -1,16 +1,20 @@
 <script setup lang="ts">
-const text = ref<string>('春江潮水连海平海上明月共潮生滟滟随波千万里何处春江无月明江流宛转绕芳甸月照花林皆似霰空里流霜不觉飞汀上白沙看不见江天一色无纤尘皎皎空中孤月轮江畔何人初见月江月何年初照人人生代代无穷已江月年年望相似不知江月待何人但见长江送流水白云一片去悠悠青枫浦上不胜愁谁家今夜扁舟子何处相思明月楼可怜楼上月裴回应照离人妆镜台玉户帘中卷不去捣衣砧上拂还来此时相望不相闻愿逐月华流照君鸿雁长飞光不度鱼龙潜跃水成文昨夜闲潭梦落花可怜春半不还家江水流春去欲尽江潭落月复西斜斜月沉沉藏海雾碣石潇湘无限路不知乘月几人归落月摇情满江树')
+import { usePicStore } from '@/store'
 
-const gifUrl = ref<string>('/demo.gif')
+const text = ref<string>('█')
 
-const bindGifVal = computed(() => `url(${gifUrl.value})`)
+const picStore = usePicStore()
 
 const dropZoneRef = ref<any>()
 function onDrop(files: File[] | null) {
   if (!files)
     return
-  const url = window.URL.createObjectURL(files[0])
-  gifUrl.value = url
+  const fileReader = new FileReader()
+  fileReader.onload = (e) => {
+    const url = e.target?.result as string
+    picStore.setPicUrl(url)
+  }
+  fileReader.readAsDataURL(files[0])
 }
 const { isOverDropZone } = useDropZone(dropZoneRef, onDrop)
 const isHovered = useElementHover(dropZoneRef)
@@ -18,7 +22,7 @@ const content = computed(() => {
   if (isOverDropZone.value || isHovered.value) {
     return 'Drop a picture to try.'
   }
-  return text.value.repeat(100)
+  return text.value.repeat(10000)
 })
 </script>
 
@@ -33,7 +37,9 @@ const content = computed(() => {
 <style scoped lang="less">
 .content {
   color: transparent;
-  background: v-bind("bindGifVal") center/cover;
+  line-height: 1;
+  word-wrap: break-word;
+  background: v-bind("picStore.bindUrlVal") center/cover;
           background-clip: text;
 
   -webkit-background-clip: text;

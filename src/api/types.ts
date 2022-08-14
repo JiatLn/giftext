@@ -1,5 +1,3 @@
-import type { IUserInfo } from '@/store'
-
 export interface BasicResp<T> {
   code: number
   data: T
@@ -11,11 +9,6 @@ export interface DataResp<T> {
   total: number
   rows: Array<T>
   msg: string
-}
-
-export interface LoginResp {
-  token: string
-  user: Partial<IUserInfo>
 }
 
 export interface IPageParams {
